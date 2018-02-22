@@ -4,7 +4,6 @@ import container from "../../components/reviews"
 // componenets import
 import Filters from "../filters"
 import Header from "../header/Header"
-import ReviewCard from "../reviewCard/ReviewCard"
 import Reviews from "../reviews/Reviews"
 
 class App extends Component {
@@ -12,7 +11,6 @@ class App extends Component {
     this.props.fetchLocation();
   }
   render() {
-    console.log(this.props.data)
     return(
     <div className="wrapper">
      {

@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
 import * as locationsAction from "../../actions/locations_action" 
-import * as loaderAction from "../../actions/loader_action" 
 import * as reviewsAction from "../../actions/reviews_action" 
 import { bindActionCreators } from "redux"
 

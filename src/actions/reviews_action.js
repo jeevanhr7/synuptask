@@ -12,9 +12,6 @@ export function fetchReviews(locationId) {
 		})
 		.then(response => response.json())
 		.then((json) => {
-			console.log("######")
-			console.log(json)
-			// const address = json.address.map((item,index) => ({...item, primary:index }) )
 			dispatch(fetchedReviews(json))
 			dispatch(stoptLoader())
 		})
@@ -23,4 +20,30 @@ export function fetchReviews(locationId) {
 
 export function setBaseFilter(filter) {
 	return { type:"SET_BASE_FILTER", filter}
+}
+
+export function setplatformfilter(filter) {
+	return { type:"SET_PLATFORM_FILTER", filter}
+}
+
+export function setdatefilter(filter) {
+	return { type:"SET_DATE_FILTER", filter}
+}
+
+export function addfeedbackToResponse(reviewId, content, platform) {
+	return { type:"ADD_FEEDBACK", reviewId, content, platform}
+}
+
+export function respondToReview(locationId, reviewId, content, platform) {
+	return (dispatch) => {
+		dispatch(startLoader())
+		dispatch(addfeedbackToResponse(reviewId, content, platform))
+		return fetch(`https://front-end-interview.herokuapp.com/candidate/3499c25fbc9df05d9efd46388079f562f24d0f54/location/`+locationId+`/reviews/`+reviewId+`?content=`+content, {
+			method:"POST"
+		})
+		.then(response => response.json())
+		.then((json) => {
+			dispatch(stoptLoader())
+		})
+	}
 }
